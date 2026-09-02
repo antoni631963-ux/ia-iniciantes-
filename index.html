@@ -471,7 +471,7 @@ async function claude(prompt,retries=3){
         method:'POST',
         headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
         body:JSON.stringify({
-          model:'llama3-8b-8192',
+          model:'meta-llama/llama-4-scout-17b-16e-instruct',
           messages:[{role:'user',content:prompt}],
           max_tokens:2000,
           temperature:0.9
