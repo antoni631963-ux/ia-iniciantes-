@@ -616,7 +616,7 @@ async function generatePost(type){
   const btn=document.getElementById('btn-'+type),res=document.getElementById('res-'+type);
   btn.disabled=true;btn.innerHTML='<span class="ld"></span><span class="ld"></span><span class="ld"></span>';res.innerHTML='';
   try{const post=await claude(PROMPTS[type]);renderPost(type,post,res);}
-  catch(e){res.innerHTML='<div class="card" style="padding:20px;text-align:center;color:#FF6B9D">Erro. Tente novamente.</div>';}
+  catch(e){res.innerHTML=`<div class="card" style="padding:20px;text-align:center;color:#FF6B9D"><strong>Erro:</strong> ${e.message}<br><small style='color:#8888AA;margin-top:8px;display:block'>Chave: ${(localStorage.getItem('groq_key')||'').substring(0,8)}...</small></div>`;}
   btn.disabled=false;btn.innerHTML='✨ Gerar novamente';
 }
 function copyEl(id,btnId){const t=document.getElementById(id)?.textContent||'';navigator.clipboard.writeText(t).then(()=>{const b=document.getElementById(btnId);if(!b)return;b.classList.add('copied');b.textContent='✓ Copiado!';setTimeout(()=>{b.classList.remove('copied');b.textContent='📋 Copiar';},2000);});}
