@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>@iniciantesia — Central IA</title>
+<title>IA Iniciantes — Central de Conteúdo @iniciantesia</title>
+<meta name="description" content="Central de conteúdo para @iniciantesia — Gerador de posts, calendário editorial, analytics e agente IA.">
+<meta name="theme-color" content="#7C6FFF">
+<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;IA Iniciantes&quot;,&quot;short_name&quot;:&quot;iniciantesia&quot;,&quot;start_url&quot;:&quot;/ia-iniciantes-/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#0A0A0F&quot;,&quot;theme_color&quot;:&quot;#7C6FFF&quot;}">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
 :root{--bg:#0A0A0F;--surface:#13131A;--card:#1C1C27;--border:#2A2A3A;--accent:#7C6FFF;--accent2:#FF6B9D;--accent3:#00E5C3;--accent4:#FFCA50;--text:#F0F0F8;--muted:#8888AA;}
@@ -207,6 +210,12 @@ function checkGroqKey(){
     document.getElementById('key-setup').style.display='flex';
   }
 }
+function resetGroqKey(){
+  if(confirm('Redefinir chave Groq?')){
+    localStorage.removeItem('groq_key');
+    document.getElementById('key-setup').style.display='flex';
+  }
+}
 window.addEventListener('load', checkGroqKey);
 </script>
 
@@ -214,6 +223,7 @@ window.addEventListener('load', checkGroqKey);
   <div class="logo">IA Iniciantes</div>
   <h1>Central de Conteúdo</h1>
   <p class="subtitle">@iniciantesia · Instagram</p>
+<button onclick="resetGroqKey()" style="background:transparent;border:none;color:var(--muted);font-size:10px;cursor:pointer;margin-top:6px;font-family:Space Grotesk,sans-serif;letter-spacing:.05em">⚙️ Redefinir chave API</button>
 </header>
 <div class="nav">
   <button class="nav-btn active" onclick="switchPage('gen')">✨ Gerador</button>
@@ -297,7 +307,7 @@ window.addEventListener('load', checkGroqKey);
 <div class="page" id="page-agent"><div class="max">
   <div class="agent-hero">
     <h2>🤖 Agente de Conteúdo</h2>
-    <p>Dê um objetivo. O agente planeja, cria posts com <strong>imagem gerada por IA</strong>, salva no calendário e coloca na fila de publicação.</p>
+    <p>Dê um objetivo e o agente trabalha sozinho: planeja a estratégia, cria todos os posts com <strong>imagem gerada por IA</strong>, salva no calendário e deixa tudo pronto para publicar no @iniciantesia.</p>
     <div class="presets">
       <button class="preset" onclick="setGoal('Crie 1 semana de conteúdo variado sobre IA para iniciantes')">📅 1 semana</button>
       <button class="preset" onclick="setGoal('Crie pacote completo sobre ChatGPT para quem nunca usou')">🎯 Pacote ChatGPT</button>
@@ -605,10 +615,10 @@ function renderStrategy(s){
 
 // PROMPTS
 const PROMPTS={
-  carrossel:`Crie carrossel Instagram sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026 — NUNCA use 2024. SOMENTE JSON completo:\n{"tema":"tema","slides":[{"titulo":"titulo1","conteudo":"texto curto"},{"titulo":"titulo2","conteudo":"texto curto"},{"titulo":"titulo3","conteudo":"texto curto"},{"titulo":"titulo4","conteudo":"texto curto"},{"titulo":"CTA","conteudo":"salve e siga"}],"legenda":"legenda 2 parágrafos emojis","hashtags":["ia","chatgpt","inteligenciaartificial","iaparainiciantes","iniciantes","tecnologia","futuro","aprendizagem","digital","inovacao"]}`,
-  estatico:`Crie post estático Instagram sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026. SOMENTE JSON completo:\n{"tema":"tema","headline":"até 8 palavras impactante","subheadline":"até 12 palavras","fato":"dado curioso IA","legenda":"legenda emojis com pergunta","hashtags":["ia","chatgpt","inteligenciaartificial","iaparainiciantes","iniciantes","tecnologia","futuro","aprendizagem","digital","inovacao"]}`,
-  reels:`Crie roteiro Reels Instagram sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026. SOMENTE JSON completo:\n{"tema":"tema","duracao":"45s","gancho":"frase gancho","roteiro":[{"tempo":"0-3s","fala":"fala","visual":"visual"},{"tempo":"3-15s","fala":"fala","visual":"visual"},{"tempo":"15-30s","fala":"fala","visual":"visual"},{"tempo":"30-45s","fala":"CTA","visual":"visual"}],"cta_final":"CTA","legenda":"legenda emojis","hashtags":["ia","reels","chatgpt","inteligenciaartificial","iaparainiciantes","iniciantes","tecnologia","futuro","aprendizagem","inovacao"],"musica":"tipo música"}`,
-  stories:`Crie Stories Instagram sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026. SOMENTE JSON completo:\n{"tema":"tema","stories":[{"numero":1,"tipo":"enquete","conteudo":"texto","interacao":"Sim / Não","visual":"visual"},{"numero":2,"tipo":"quiz","conteudo":"texto","interacao":"A / B / C","visual":"visual"},{"numero":3,"tipo":"texto","conteudo":"dica","interacao":"","visual":"visual"},{"numero":4,"tipo":"cta","conteudo":"chamada","interacao":"link na bio","visual":"visual"}]}`
+  carrossel:`Você é especialista em marketing de conteúdo para Instagram. Crie um carrossel EDUCATIVO e VIRAL sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026 — NUNCA mencione 2024. Use linguagem simples, emojis e ganchos fortes. SOMENTE JSON completo:\n{"tema":"tema","slides":[{"titulo":"titulo1","conteudo":"texto curto"},{"titulo":"titulo2","conteudo":"texto curto"},{"titulo":"titulo3","conteudo":"texto curto"},{"titulo":"titulo4","conteudo":"texto curto"},{"titulo":"CTA","conteudo":"salve e siga"}],"legenda":"legenda 2 parágrafos emojis","hashtags":["ia","chatgpt","inteligenciaartificial","iaparainiciantes","iniciantes","tecnologia","futuro","aprendizagem","digital","inovacao"]}`,
+  estatico:`Você é especialista em marketing de conteúdo para Instagram. Crie um post estático IMPACTANTE e VIRAL sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026. Use headline poderosa e dado surpreendente. SOMENTE JSON completo:\n{"tema":"tema","headline":"até 8 palavras impactante","subheadline":"até 12 palavras","fato":"dado curioso IA","legenda":"legenda emojis com pergunta","hashtags":["ia","chatgpt","inteligenciaartificial","iaparainiciantes","iniciantes","tecnologia","futuro","aprendizagem","digital","inovacao"]}`,
+  reels:`Você é especialista em Reels virais para Instagram. Crie um roteiro DINÂMICO e VIRAL sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026. Gancho nos primeiros 3 segundos obrigatório. SOMENTE JSON completo:\n{"tema":"tema","duracao":"45s","gancho":"frase gancho","roteiro":[{"tempo":"0-3s","fala":"fala","visual":"visual"},{"tempo":"3-15s","fala":"fala","visual":"visual"},{"tempo":"15-30s","fala":"fala","visual":"visual"},{"tempo":"30-45s","fala":"CTA","visual":"visual"}],"cta_final":"CTA","legenda":"legenda emojis","hashtags":["ia","reels","chatgpt","inteligenciaartificial","iaparainiciantes","iniciantes","tecnologia","futuro","aprendizagem","inovacao"],"musica":"tipo música"}`,
+  stories:`Você é especialista em Stories para Instagram. Crie uma sequência de Stories ENGAJANTE sobre IA para iniciantes (@iniciantesia) em português BR. O ano é 2026. Inclua enquetes e quizzes interativos. SOMENTE JSON completo:\n{"tema":"tema","stories":[{"numero":1,"tipo":"enquete","conteudo":"texto","interacao":"Sim / Não","visual":"visual"},{"numero":2,"tipo":"quiz","conteudo":"texto","interacao":"A / B / C","visual":"visual"},{"numero":3,"tipo":"texto","conteudo":"dica","interacao":"","visual":"visual"},{"numero":4,"tipo":"cta","conteudo":"chamada","interacao":"link na bio","visual":"visual"}]}`
 };
 
 // GENERATOR
